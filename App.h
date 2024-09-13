@@ -20,7 +20,7 @@ class App : public QMainWindow {
     void mouseMoveEvent(QMouseEvent* event) override;
 
  private:
-    bool mouse_pressed_, is_rect_selected_, size_set_;
+    bool mouse_pressed_, is_rect_selected_, size_set_, started_;
     int selected_width_, selected_height_;
     int width_, height_;
     QPoint start_mouse_pos_;

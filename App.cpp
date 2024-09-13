@@ -18,6 +18,7 @@ App::App() {
 
     mouse_pressed_ = false;
     size_set_ = false;
+    started_ = true;
     is_rect_selected_ = false;
     selected_width_ = selected_height_ = 0;
 
@@ -44,6 +45,7 @@ App::App() {
     generateSet();
 
     connect(set_, &MandelbrotSet::pixReady, this, [this](int i, int j, int val) {
+        if (started_) return;
         auto pix = mandelbrot_scene_->addRect(i, j, 1, 1);
         if (val >= 200) {
             pix->setBrush(Qt::black);
@@ -122,6 +124,7 @@ App::App() {
             }
         }
         update();
+        started_ = false;
     });
 }
 

@@ -27,7 +27,7 @@ void MandelbrotSet::generateSet() {
             set[i - 1][j - 1] = k;
         }
     }
-    finished();
+    emit finished();
 }
 
 void MandelbrotSet::scale(int x_left, int y_top, int x_right, int y_bottom) {

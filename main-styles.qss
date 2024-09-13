@@ -2,3 +2,7 @@ QWidget#SelectedRect {
     background: transparent;
     border: 1px solid #fcba03;
 }
+
+QMainWindow {
+    background: #000;
+}
