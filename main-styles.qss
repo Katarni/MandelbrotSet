@@ -1,0 +1,4 @@
+QWidget#SelectedRect {
+    background: transparent;
+    border: 1px solid #fcba03;
+}
