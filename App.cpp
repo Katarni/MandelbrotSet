@@ -34,7 +34,6 @@ App::App() {
     mandelbrot_view_->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     mandelbrot_view_->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-
     selected_rect_ = new QWidget(this);
     selected_rect_->resize(0, 0);
     selected_rect_->setObjectName("SelectedRect");
@@ -158,7 +157,7 @@ void App::mouseReleaseEvent(QMouseEvent *event) {
 }
 
 void App::keyReleaseEvent(QKeyEvent *event) {
-    if (event->key() == Qt::Key_Q) {
+    if (event->key() == Qt::Key_Backspace) {
         selected_rect_->resize(0, 0);
         is_rect_selected_ = false;
         if (set_->rollback()) generateSet();
@@ -177,7 +176,6 @@ void App::keyReleaseEvent(QKeyEvent *event) {
         is_rect_selected_ = false;
 
         generateSet();
-        update();
     } else if (event->key() == Qt::Key_Right) {
         formatRect(true);
     } else if (event->key() == Qt::Key_Down) {
@@ -187,8 +185,6 @@ void App::keyReleaseEvent(QKeyEvent *event) {
 }
 
 void App::generateSet() {
-//    if (mandelbrot_thread_->isRunning()) return;
-
     set_->moveToThread(mandelbrot_thread_);
     mandelbrot_thread_->start();
 }
