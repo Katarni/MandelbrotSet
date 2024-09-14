@@ -47,37 +47,7 @@ App::App() {
     connect(set_, &MandelbrotSet::pixReady, this, [this](int i, int j, int val) {
         if (started_) return;
         auto pix = mandelbrot_scene_->addRect(i, j, 1, 1);
-        if (val >= 200) {
-            pix->setBrush(Qt::black);
-        } else if (val >= 185) {
-            pix->setBrush(QBrush(QColor(153, 255, 250)));
-        } else if (val >= 170) {
-            pix->setBrush(QBrush(QColor(105, 255, 255)));
-        } else if (val >= 150) {
-            pix->setBrush(QBrush(QColor(25, 252, 211)));
-        } else if (val >= 130) {
-            pix->setBrush(QBrush(QColor(7, 230, 178)));
-        } else if (val >= 100) {
-            pix->setBrush(QBrush(QColor(67, 178, 230)));
-        } else if (val >= 80) {
-            pix->setBrush(QBrush(QColor(47, 131, 204)));
-        } else if (val >= 50) {
-            pix->setBrush(QBrush(QColor(72, 61, 227)));
-        } else if (val >= 20) {
-            pix->setBrush(QBrush(QColor(88, 53, 204)));
-        } else if (val >= 15) {
-            pix->setBrush(QBrush(QColor(84, 49, 181)));
-        } else if (val >= 10) {
-            pix->setBrush(QBrush(QColor(68, 36, 156)));
-        } else if (val >= 5) {
-            pix->setBrush(QBrush(QColor(59, 29, 143)));
-        } else if (val >= 3) {
-            pix->setBrush(QBrush(QColor(48, 23, 117)));
-        } else if (val >= 2) {
-            pix->setBrush(QBrush(QColor(36, 15, 97)));
-        } else {
-            pix->setBrush(QBrush(QColor(25, 6, 79)));
-        }
+        pix->setBrush(getBrush(val));
         pix->setPen(Qt::NoPen);
         update();
     });
@@ -89,37 +59,7 @@ App::App() {
         for (int j = 0; j < height_; ++j) {
             for (int i = 0; i < width_; ++i) {
                 auto pix = mandelbrot_scene_->addRect(i, j, 1, 1);
-                if (set_->at(i, j) >= 200) {
-                    pix->setBrush(Qt::black);
-                } else if (set_->at(i, j) >= 185) {
-                    pix->setBrush(QBrush(QColor(153, 255, 250)));
-                } else if (set_->at(i, j) >= 170) {
-                    pix->setBrush(QBrush(QColor(105, 255, 255)));
-                } else if (set_->at(i, j) >= 150) {
-                    pix->setBrush(QBrush(QColor(25, 252, 211)));
-                } else if (set_->at(i, j) >= 130) {
-                    pix->setBrush(QBrush(QColor(7, 230, 178)));
-                } else if (set_->at(i, j) >= 100) {
-                    pix->setBrush(QBrush(QColor(67, 178, 230)));
-                } else if (set_->at(i, j) >= 80) {
-                    pix->setBrush(QBrush(QColor(47, 131, 204)));
-                } else if (set_->at(i, j) >= 50) {
-                    pix->setBrush(QBrush(QColor(72, 61, 227)));
-                } else if (set_->at(i, j) >= 20) {
-                    pix->setBrush(QBrush(QColor(88, 53, 204)));
-                } else if (set_->at(i, j) >= 15) {
-                    pix->setBrush(QBrush(QColor(84, 49, 181)));
-                } else if (set_->at(i, j) >= 10) {
-                    pix->setBrush(QBrush(QColor(68, 36, 156)));
-                } else if (set_->at(i, j) >= 5) {
-                    pix->setBrush(QBrush(QColor(59, 29, 143)));
-                } else if (set_->at(i, j) >= 3) {
-                    pix->setBrush(QBrush(QColor(48, 23, 117)));
-                } else if (set_->at(i, j) >= 2) {
-                    pix->setBrush(QBrush(QColor(36, 15, 97)));
-                } else {
-                    pix->setBrush(QBrush(QColor(25, 6, 79)));
-                }
+                pix->setBrush(getBrush(set_->at(i, j)));
                 pix->setPen(Qt::NoPen);
             }
         }
@@ -216,4 +156,37 @@ void App::formatRect(bool width) {
     }
     size_set_ = true;
     update();
+}
+
+QBrush App::getBrush(int val) {
+    if (val >= 200) {
+        return Qt::black;
+    } else if (val >= 185) {
+        return QColor(153, 255, 250);
+    } else if (val >= 170) {
+        return QColor(105, 255, 255);
+    } else if (val >= 150) {
+        return QColor(25, 252, 211);
+    } else if (val >= 130) {
+        return QColor(7, 230, 178);
+    } else if (val >= 100) {
+        return QColor(67, 178, 230);
+    } else if (val >= 80) {
+        return QColor(47, 131, 204);
+    } else if (val >= 50) {
+        return QColor(72, 61, 227);
+    } else if (val >= 20) {
+        return QColor(88, 53, 204);
+    } else if (val >= 15) {
+        return QColor(84, 49, 181);
+    } else if (val >= 10) {
+        return QColor(68, 36, 156);
+    } else if (val >= 5) {
+        return QColor(59, 29, 143);
+    } else if (val >= 3) {
+        return QColor(48, 23, 117);
+    } else if (val >= 2) {
+        return QColor(36, 15, 97);
+    }
+    return QColor(25, 6, 79);
 }

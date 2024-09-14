@@ -37,4 +37,6 @@ class App : public QMainWindow {
     void generateSet();
 
     void formatRect(bool width);
+
+    QBrush getBrush(int val);
 };
